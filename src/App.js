@@ -1,8 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
-import {Route, Routes} from "react-router-dom";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Navbar from "./Components/Navbar/Navbar";
-import FloatingCart from "./Pages/Home/Home";
+import FloatingCart from "./Components/FloatingCart/FloatingCart";
 import Home from "./Pages/Home/Home";
 import Product from "./Pages/Products/Product";
 import ProductShowcase from "./Pages/ProductShowcase/ProductShowcase";
@@ -13,6 +13,7 @@ import ShoppingCart from "./Pages/ShoppingCart/ShoppingCart";
 function App() {
   return (
     <div className="App">
+      <BrowserRouter>
       <Navbar/>
       <FloatingCart/>
     <Routes>
@@ -22,6 +23,7 @@ function App() {
         <Route path="/contact" element={<Contact/>}/>
         <Route path="/shoppingcart" element={<ShoppingCart/>}/>
     </Routes>
+      </BrowserRouter>
     </div>
   );
 }
