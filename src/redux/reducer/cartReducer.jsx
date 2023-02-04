@@ -42,8 +42,16 @@ export default function cartReducer(state = INITIAl_STATE, action) {
             }
 
         case "UPDATEITEM" :
-            return {
+            //3.
+            const indexItemUpdate = state.cart.findIndex
+            (obj => obj.id === action.payload.id)
 
+            const newArr = [...state.cart];
+            //je remplace l'objet par l'obj modifié
+            newArr.splice(indexItemUpdate, 1, action.payload)
+
+            return {
+                cart: newArr
             }
     }
 
