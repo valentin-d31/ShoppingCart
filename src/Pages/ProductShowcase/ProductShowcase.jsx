@@ -1,12 +1,15 @@
 import inventory from "../../data/inventory";
 import './ProductShowcase.css'
 import {useParams} from "react-router-dom";
-import {useState} from "react";
+import {useEffect, useRef, useState} from "react";
+import {useDispatch} from "react-redux";
 
 export default function ProductShowcase() {
 
     const [nbMugs, setNbMugs] = useState(1)
     const {id} = useParams()
+    //envoyer au store avec dispatch
+    const dispatch = useDispatch()
 
     //findIndex=>trouve l'index d'un objet dans un tbl d'object
     //.Comparaison id du table d'obj et l'id sur lequel je clic
@@ -18,6 +21,43 @@ export default function ProductShowcase() {
         //on le transforme en Number est pas chaine de cara
         setNbMugs(Number(e.target.value))
     }
+
+    const addingInfo = useRef();
+    let timerInfo;
+    let display = true;
+
+    const addToCart= e => {
+        e.preventDefault()
+        const itemAdded = {
+            ...inventory[productClicked],
+            quantity: nbMugs
+        }
+
+        dispatch({
+            type: "ADDITEM",
+            payload: itemAdded
+        })
+
+        //ajout du message
+        addingInfo.current.innerText = "Ajouter au panier"
+
+        if(display) {
+            display = false;
+            //faire disparaitre le message
+            timerInfo = setTimeout(() => {
+                addingInfo.current.innerText = "";
+                display = true;
+            }, 500)
+        }
+    }
+
+    useEffect(() => {
+        return () => {
+            //nettoie le timerInfo pour eviter les erreur
+            //au rechargement de la page
+            clearTimeout(timerInfo)
+        }
+    }, [])
 
     return(
         <div className="showcase">
@@ -34,7 +74,7 @@ export default function ProductShowcase() {
                 <h2>{inventory[productClicked].title}</h2>
                 <p>Prix: {inventory[productClicked].price}€</p>
 
-                <form>
+                <form onSubmit={addToCart}>
                     <label htmlFor="quantity">Quantité</label>
                     <input
                         type="number"
