@@ -46,4 +46,6 @@ export default function cartReducer(state = INITIAl_STATE, action) {
 
             }
     }
+
+    return state;
 }

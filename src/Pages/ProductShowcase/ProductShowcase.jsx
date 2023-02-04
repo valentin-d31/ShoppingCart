@@ -4,6 +4,7 @@ import {useParams} from "react-router-dom";
 import {useEffect, useRef, useState} from "react";
 import {useDispatch} from "react-redux";
 
+//1./FORMULAIRE AJOUT DE MUG
 export default function ProductShowcase() {
 
     const [nbMugs, setNbMugs] = useState(1)
