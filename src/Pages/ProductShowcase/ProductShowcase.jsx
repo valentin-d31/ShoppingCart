@@ -7,11 +7,12 @@ import {useDispatch} from "react-redux";
 export default function ProductShowcase() {
 
     const [nbMugs, setNbMugs] = useState(1)
+    //1.
     const {id} = useParams()
     //envoyer au store avec dispatch
     const dispatch = useDispatch()
 
-    //findIndex=>trouve l'index d'un objet dans un tbl d'object
+    //1.findIndex=>trouve l'index d'un objet dans un tbl d'object
     //.Comparaison id du table d'obj et l'id sur lequel je clic
     const productClicked = inventory.findIndex(obj => obj.title
         .replace(/\s+/g, "").
