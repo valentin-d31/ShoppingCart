@@ -21,8 +21,16 @@ export default function Product() {
                             src={process.env.PUBLIC_URL + `/images/${item.img}.png`
                             }
                             alt="produit"/>
+                            <div className="like-container">
+                                <img src={heart} alt="icone j'aime"/>
+                            </div>
+                        </div>
+                        <div className="info">
+                            <p>{item.title}</p>
+                            <p>Prix: {item.price}€</p>
                         </div>
                     </div>
+                    <div className="back-card"></div>
                 </div>
                 </Link>
             ))}
