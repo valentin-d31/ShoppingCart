@@ -7,6 +7,7 @@ export default function ProductShowcase() {
 
     const [nbMugs, setNbMugs] = useState(1)
     const {id} = useParams()
+
     //findIndex=>trouve l'index d'un objet dans un tbl d'object
     //.Comparaison id du table d'obj et l'id sur lequel je clic
     const productClicked = inventory.findIndex(obj => obj.title
@@ -33,7 +34,7 @@ export default function ProductShowcase() {
                 <h2>{inventory[productClicked].title}</h2>
                 <p>Prix: {inventory[productClicked].price}€</p>
 
-                <form onSubmit={addToCart}>
+                <form>
                     <label htmlFor="quantity">Quantité</label>
                     <input
                         type="number"
@@ -44,7 +45,6 @@ export default function ProductShowcase() {
                     />
                     <button>Ajouter au panier</button>
                     <span
-                        ref={addingInfo}
                         className="adding-info"></span>
                 </form>
             </div>
